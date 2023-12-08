@@ -7,6 +7,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 class authController {
+
   static register = async (req, res) => {
     const { name, email, password } = req.body;
     if (!name || !email || !password) {
@@ -21,11 +22,11 @@ class authController {
           .status(400)
           .json({ status: "error", message: "This email already exists" });
       }
-      const hashedPassword = await hashPassword(password);
+      // const hashedPassword = await hashPassword(password);
       const user = await User.create({
         name,
         email,
-        password: hashedPassword,
+        password: password,
       });
       const token = jwt.sign(
         { userRole: user.role, email: user.email, name: user.name },

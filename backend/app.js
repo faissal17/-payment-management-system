@@ -3,9 +3,14 @@ const app = express();
 const connection = require("./database/connection");
 const authRoutes = require("./routes/auth.routes");
 
+const bodyParser = require('body-parser')
+
+
 const dotenv = require("dotenv");
 
 dotenv.config();
+
+app.use(bodyParser.json());
 
 app.use("/auth", authRoutes);
 
