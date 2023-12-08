@@ -1,1 +1,1 @@
-# -payment-management-system
+# payment-management-system
