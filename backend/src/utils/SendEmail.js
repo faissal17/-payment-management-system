@@ -19,7 +19,7 @@ const sendEmail = async (email) => {
       },
     });
     await transport.sendMail({
-      from: "AlloMedia@gmail.com",
+      from: "PayUnionPro@gmail.com",
       to: email,
       subject: "Reset Password",
       html: `<h1>Click on this link to reset your password</h1><a href="${resetPasswordLink}">Reset Password Link</a>`,

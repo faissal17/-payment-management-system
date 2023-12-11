@@ -1,5 +1,5 @@
 const User = require("../model/User.schema");
-const sendEmail = require("../utils/sendEmail");
+const sendEmail = require("../utils/SendEmail");
 const dotenv = require("dotenv");
 
 dotenv.config();
