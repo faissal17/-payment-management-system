@@ -14,8 +14,8 @@ const SendActivateEmail = async (email) => {
       host: process.env.HOST,
       port: 2525,
       auth: {
-        user: process.env.USER,
-        pass: process.env.PASSWORD,
+        user: process.env.HOSTUSER,
+        pass: process.env.HOSTPASSWORD,
       },
     });
     await transport.sendMail({
