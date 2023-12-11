@@ -23,7 +23,7 @@ class authController {
           .status(400)
           .json({ status: "error", message: "This email already exists" });
       }
-      // SendActivateEmail(email)
+      SendActivateEmail(email)
       const hashedPassword = await hashPassword(password);
       const user = await User.create({
         name,

@@ -31,14 +31,14 @@ export const Register = async (name, email, password) => {
       email: email,
       password: password,
     });
-
-    if (response.status === 200) {
-      return response.data;
+    if (response.status === 201) {
+      const token = response.data.token;
+      Cookies.set("token", token);
     } else {
-      throw new Error("register failed");
+      throw new Error("Register failed");
     }
   } catch (error) {
-    console.error("Error regestering in:", error);
+    console.error("Error in Register:", error);
     throw error;
   }
 };
