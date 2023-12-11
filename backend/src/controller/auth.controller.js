@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 
 const hashPassword = require("../helper/hashPassword");
 const dotenv = require("dotenv");
+const SendActivateEmail = require('../utils/sendActivateEmail')
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ class authController {
           .status(400)
           .json({ status: "error", message: "This email already exists" });
       }
+      // SendActivateEmail(email)
       const hashedPassword = await hashPassword(password);
       const user = await User.create({
         name,
