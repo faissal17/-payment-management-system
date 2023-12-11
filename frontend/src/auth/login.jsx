@@ -1,12 +1,34 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
+import { Login } from "../Api/auth.api";
+import Swal from "sweetalert2";
 
 function login() {
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
+    },
+    onSubmit: async (values) => {
+      try {
+        await Login(values.email, values.password);
+        Swal.fire({
+          title: "Success!",
+          text: "Login successful",
+          icon: "success",
+        }).then(() => {
+          navigate("/");
+        });
+      } catch (error) {
+        Swal.fire({
+          title: "Error!",
+          text: "Email or password are wrong",
+          icon: "error",
+        });
+      }
     },
     validate: (values) => {
       const errors = {};

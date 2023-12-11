@@ -6,3 +6,5 @@ resetPasswordRouter.post(
   "/resetPassword",
   resetPasswordontroller.resetPassword
 );
+
+module.exports = resetPasswordRouter

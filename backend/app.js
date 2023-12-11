@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 const connection = require("./src/database/connection");
+const cors = require("cors");
+
 const authRoutes = require("./src/routes/auth.routes");
 const resetPasswordRouter = require("./src/routes/resetPassword.routes");
 const forgetPasswordRouter = require("./src/routes/forgetPassword.routes");
@@ -11,6 +13,14 @@ const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 
 dotenv.config();
+
+
+app.use(
+    cors({
+      origin: "http://localhost:5173",
+      credentials: true,
+    })
+  );
 
 app.use(bodyParser.json());
 
