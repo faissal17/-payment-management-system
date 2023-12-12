@@ -9,7 +9,7 @@ const forgetPasswordRouter = require("./src/routes/forgetPassword.routes");
 const activeEmailRouter = require("./src/routes/activeEmail.routes");
 
 const apartementRoutes = require("./src/routes/apartement/apartement.routes");
-
+const paymentRouter = require('./src/routes/payment/payment.routes')
 const bodyParser = require("body-parser");
 
 const dotenv = require("dotenv");
@@ -24,9 +24,12 @@ app.use(
 );
 
 app.use(bodyParser.json());
+
+// payment Routes
+app.use("/payment",paymentRouter)
+
 // apartement Routes
 app.use("/apartement", apartementRoutes);
-
 // auth routes
 app.use("/auth", authRoutes);
 app.use("/auth", resetPasswordRouter);
