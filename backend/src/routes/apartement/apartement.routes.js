@@ -1,10 +1,11 @@
 const express = require("express");
 const apartementRoutes = express.Router();
 
-const ApartementController = require("../../controller/apartment/apartment.controller");
+const createApartement = require("../../controller/apartment/addApartment.controller");
+const getAllApartement = require('../../controller/apartment/getApartment.controller')
 
-apartementRoutes.post("/create", ApartementController.createApartement);
-apartementRoutes.get("/get", ApartementController.getApartement);
+apartementRoutes.post("/",createApartement);
+apartementRoutes.get("/",getAllApartement)
 
 
 module.exports = apartementRoutes;
