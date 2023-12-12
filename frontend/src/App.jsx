@@ -8,6 +8,7 @@ import register from "./auth/register";
 import activatEmail from "./auth/activeEmail";
 import forgetPassword from "./auth/forgetPassword";
 import resetPassword from "./auth/resetPassword";
+import dashboard from "./component/dashboard";
 function App() {
   return (
     <React.Fragment>
@@ -18,8 +19,7 @@ function App() {
           <Route path="/ActiveEmail" Component={activatEmail}/>
           <Route path="/forgetPassword" Component={forgetPassword}/>
           <Route path="/resetPassword" Component={resetPassword}/>
-
-
+          <Route path="/dashboard" Component={dashboard}/>
 
         </Routes>
       </BrowserRouter>

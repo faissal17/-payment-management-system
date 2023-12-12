@@ -20,7 +20,7 @@ function login() {
           text: "Login successful",
           icon: "success",
         }).then(() => {
-          navigate("/");
+          navigate("/dashboard");
         });
       } catch (error) {
         Swal.fire({
