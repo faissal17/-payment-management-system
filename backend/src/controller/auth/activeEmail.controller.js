@@ -13,7 +13,7 @@ class ActiveEmailController {
       console.log(token);
       const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
       if (!decodedToken) {
-        return res.status(401).json({ error: "Oh hell no" });
+        return res.status(404).json({ error: "Oh hell no" });
       }
       const email = decodedToken.email;
       await User.findOneAndUpdate(

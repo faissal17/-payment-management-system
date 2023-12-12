@@ -5,8 +5,9 @@ const {
   getAllPayment,
   getPaymentByID,
 } = require("../../controller/payment/getPayment.controller");
+const updatePayment = require('../../controller/payment/updatePayment.controller')
 
 paymentRouter.route("/").post(addPayment).get(getAllPayment);
-paymentRouter.route("/:id").get(getPaymentByID);
+paymentRouter.route("/:id").get(getPaymentByID).put(updatePayment);
 
 module.exports = paymentRouter;

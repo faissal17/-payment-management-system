@@ -7,7 +7,7 @@ class ForgetPasswordController {
   static forget = async (req, res) => {
     const { email } = req.body;
     if (!email) {
-      res.status(401).json({ message: "Please enter your registered email" });
+      res.status(404).json({ message: "Please enter your registered email" });
     }
     try {
       const checkUserEmail = await User.findOne({ email });
