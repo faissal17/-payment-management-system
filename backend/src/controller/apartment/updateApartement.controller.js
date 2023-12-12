@@ -11,7 +11,7 @@ const updateApartement = async (req, res) => {
       price,
       city,
       adress,
-      room,
+      room, 
       floor,
     };
 
