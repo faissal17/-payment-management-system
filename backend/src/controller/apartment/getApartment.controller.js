@@ -4,14 +4,15 @@ const getAllApartement = async (req, res) => {
   try {
     const appartement = await Apartement.find();
     if (!appartement) {
-      res.status(400).json({ message: "no apartement found" });
+      return res.status(400).json({ message: "No apartments found" });
     }
-    res.status(200).json({ message: appartement });
+    res.status(200).json(appartement);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
+
 const getApartmentByID = async (req, res) => {
   const { id } = req.params;
   try {
