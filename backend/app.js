@@ -10,8 +10,7 @@ const activeEmailRouter = require("./src/routes/activeEmail.routes");
 
 const apartementRoutes = require("./src/routes/apartement/apartement.routes");
 const paymentRouter = require("./src/routes/payment/payment.routes");
-const userRouter = require("./src/routes/user/user.routes");
-
+const userRouter = require('./src/routes/user/user.routes')
 const bodyParser = require("body-parser");
 
 const dotenv = require("dotenv");

@@ -1,5 +1,4 @@
 const User = require("../../model/User.schema");
-const hashedPassword = require("../../helper/hashPassword");
 const hashPassword = require("../../helper/hashPassword");
 
 const addUser = async (req, res) => {
