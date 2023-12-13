@@ -6,8 +6,9 @@ const {
   getAllUser,
   getUserByID,
 } = require("../../controller/user/getUser.controller");
+const updateUser = require('../../controller/user/updateUser.controller')
 
 userRouter.route("/").post(addUser).get(getAllUser);
-userRouter.route("/:id").get(getUserByID)
+userRouter.route("/:id").get(getUserByID).put(updateUser)
 
 module.exports = userRouter;
