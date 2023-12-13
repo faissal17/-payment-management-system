@@ -70,7 +70,7 @@ function Appartement() {
         </thead>
         <tbody className="bg-gray-100 divide-y divide-gray-200">
           {apartement.map((apt) => (
-            <tr key={apt.id}>
+            <tr key={apt._id}>
               <td className="px-6 py-4 whitespace-nowrap">
                 <div className="flex items-center">
                   <div className="flex-shrink-0 h-10 w-10">
