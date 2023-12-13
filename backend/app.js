@@ -9,7 +9,9 @@ const forgetPasswordRouter = require("./src/routes/forgetPassword.routes");
 const activeEmailRouter = require("./src/routes/activeEmail.routes");
 
 const apartementRoutes = require("./src/routes/apartement/apartement.routes");
-const paymentRouter = require('./src/routes/payment/payment.routes')
+const paymentRouter = require("./src/routes/payment/payment.routes");
+const userRouter = require("./src/routes/user/user.routes");
+
 const bodyParser = require("body-parser");
 
 const dotenv = require("dotenv");
@@ -25,8 +27,11 @@ app.use(
 
 app.use(bodyParser.json());
 
+// user Routes
+app.use("/user", userRouter);
+
 // payment Routes
-app.use("/payment",paymentRouter)
+app.use("/payment", paymentRouter);
 
 // apartement Routes
 app.use("/apartement", apartementRoutes);
