@@ -12,7 +12,7 @@ const updatePayment = async (req, res) => {
     if (!findPayment) {
       return res.status(404).json({ message: "no payment found" });
     }
-    return res.status(200).json({ message: "Apartment updated", findPayment });
+    return res.status(200).json({ message: "payment updated", findPayment });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });

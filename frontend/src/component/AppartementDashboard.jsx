@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../shared/Navbar";
 import Appartement from "../shared/Apartement";
-function dashboard() {
+function AppartementDashboard() {
   return (
     <React.Fragment>
       <Navbar />
@@ -9,4 +9,4 @@ function dashboard() {
     </React.Fragment>
   );
 }
-export default dashboard;
+export default AppartementDashboard;

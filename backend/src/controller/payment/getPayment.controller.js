@@ -2,11 +2,11 @@ const Payment = require("../../model/payment.schema");
 
 const getAllPayment = async (req, res) => {
   try {
-    const AllPayment = await Payment.find();
-    if (!AllPayment) {
-      res.status(404).json({ message: "no payment found" });
+    const allPayment = await Payment.find();
+    if (!allPayment || allPayment.length === 0) {
+      return res.status(404).json({ message: "No payments found" });
     }
-    res.status(404).json({ message: AllPayment });
+    res.status(200).json(allPayment);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });

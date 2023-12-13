@@ -4,7 +4,7 @@ const addPayment = async (req, res) => {
   const { amount } = req.body;
   try {
     const payment = await Payment.create({ amount });
-    res.status(201).json({ message: "appartement created", payment });
+    res.status(201).json({ message: "payment created", payment });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });
