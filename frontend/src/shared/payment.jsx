@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { getAllPayment } from "../Api/payment.api";
+import { getAllPayment, deletPayment } from "../Api/payment.api";
+import Swal from "sweetalert2";
 function Payment() {
   const [payments, setPayment] = useState([]);
 
@@ -13,7 +14,27 @@ function Payment() {
         console.error("Error fetching data:", error);
       });
   }, []);
-
+  const handleDeletePayment = async (paymentId) => {
+    try {
+      const response = await deletPayment(paymentId);
+      console.log(response);
+      if (response) {
+        setPayment((prevPayments) =>
+          prevPayments.filter((payments) => payments._id !== paymentId)
+        );
+        Swal.fire("Deleted!", "payments has been deleted.", "success");
+      } else {
+        Swal.fire("Error", "Failed to delete the payments.", "error");
+      }
+    } catch (error) {
+      console.error("Error deleting payments:", error);
+      Swal.fire(
+        "Error",
+        "An error occurred while deleting the payments.",
+        "error"
+      );
+    }
+  };
   return (
     <React.Fragment>
       <table className="divide-gray-200 w-full mt-28">
@@ -79,9 +100,12 @@ function Payment() {
                 <a href="#" className="text-indigo-600 hover:text-indigo-900">
                   Edit
                 </a>
-                <a href="#" className="ml-2 text-red-600 hover:text-red-900">
+                <button
+                  onClick={() => handleDeletePayment(pay._id)}
+                  className="ml-2 text-red-600 hover:text-red-900"
+                >
                   Delete
-                </a>
+                </button>
               </td>
             </tr>
           ))}
