@@ -4,7 +4,6 @@ const apartementSchema = new mongoose.Schema({
   name: {
     type: String,
     require: [true, "name of apartement is required"],
-    unique: true,
   },
   description: {
     type: String,
@@ -13,6 +12,7 @@ const apartementSchema = new mongoose.Schema({
   price: {
     type: Number,
     require: [true, "price of apartement is required"],
+    default: 300,
   },
   image: {
     type: String,

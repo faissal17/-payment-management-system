@@ -30,3 +30,18 @@ export const deleteAllApartement = async (apartmentId) => {
     throw error;
   }
 };
+export const createApartement = async (apartmentData) => {
+  try {
+    const response = await apartementAPi.post("/apartement", apartmentData);
+    
+    if (response.status === 201) {
+      return response.data;
+    } else {
+      throw new Error(`Failed to create apartment. Status: ${response.status}`);
+    }
+  } catch (error) {
+    console.error("Error creating apartment:", error);
+    throw error;
+  }
+};
+

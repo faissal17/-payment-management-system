@@ -10,6 +10,7 @@ import forgetPassword from "./auth/forgetPassword";
 import resetPassword from "./auth/resetPassword";
 import AppartementDashboard from "./component/AppartementDashboard";
 import PaymentDashboard from "./component/PaymentDashboard";
+import addApartement from "./component/apartementCrud/addApartement";
 function App() {
   return (
     <React.Fragment>
@@ -23,6 +24,9 @@ function App() {
           <Route path="/Appartement" Component={AppartementDashboard} />
           <Route path="/Payment" Component={PaymentDashboard} />
 
+          {/*Route of Apartement Crud*/}
+
+          <Route path="/addApartement" Component={addApartement} />
         </Routes>
       </BrowserRouter>
     </React.Fragment>
