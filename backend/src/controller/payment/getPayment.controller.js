@@ -2,7 +2,7 @@ const Payment = require("../../model/payment.schema");
 
 const getAllPayment = async (req, res) => {
   try {
-    const allPayment = await Payment.find();
+    const allPayment = await Payment.find().populate("user").populate("apartment");
     if (!allPayment || allPayment.length === 0) {
       return res.status(404).json({ message: "No payments found" });
     }

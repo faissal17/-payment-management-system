@@ -2,18 +2,59 @@ import React, { useEffect, useState } from "react";
 import { getAllApartement } from "../../Api/apartement.api";
 import { getAllUser } from "../../Api/user.api";
 import { createPayment } from "../../Api/payment.api";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 function addPayment() {
+  const navigate = useNavigate();
   const [apartement, setApartement] = useState([]);
   const [client, setClient] = useState([]);
+  const [payment, setPayment] = useState({
+    amount: "",
+    user: "",
+    apartement: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setPayment((prevPayment) => ({
+      ...prevPayment,
+      [name]: value,
+    }));
+  };
+
+  const handleUserChange = (selectedUser) => {
+    setPayment((prevPayment) => ({
+      ...prevPayment,
+      user: selectedUser.target.value,
+    }));
+  };
+
+  const handleApartmentChange = (selectedApartment) => {
+    setPayment((prevPayment) => ({
+      ...prevPayment,
+      apartement: selectedApartment.target.value,
+    }));
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await createPayment(payment);
+      console.log(response);
+
+      Swal.fire("Success!", "payment has been created.", "success").then(() => {
+        navigate("/payment");
+      });
+    } catch (error) {
+      console.error("Error creating payment:", error);
+      Swal.fire("Error", "Failed to create the payment.", "error");
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await Promise.all([getAllApartement(), getAllUser()]);
-
         const [apartmentData, userDataResponse] = response;
-
-        // Access the array of user data through the 'message' property
         const userData = userDataResponse.message || [];
 
         console.log("Apartment data:", apartmentData);
@@ -32,7 +73,10 @@ function addPayment() {
   return (
     <React.Fragment>
       <div className="flex justify-center items-center mt-2">
-        <form className="w-6/12 m-4 p-10 bg-white rounded shadow-2xl">
+        <form
+          className="w-6/12 m-4 p-10 bg-white rounded shadow-2xl"
+          onSubmit={handleSubmit}
+        >
           <p className="text-gray-800 font-bold text-2xl">Add Payment</p>
           <div className="mt-2 flex">
             <div className="w-full pr-2">
@@ -44,6 +88,8 @@ function addPayment() {
                 type="number"
                 name="amount"
                 id="amount"
+                value={payment.amount}
+                onChange={handleChange}
                 placeholder="Amount of the payment"
               />
             </div>
@@ -53,15 +99,17 @@ function addPayment() {
               Client
             </label>
             <select
-              name="client"
-              id="client"
+              name="user"
+              id="user"
+              value={payment.user}
+              onChange={handleUserChange}
               className="w-full px-4 py-2 text-gray-700 bg-gray-200 rounded"
               type="text"
-              placeholder="client"
+              placeholder="Client"
             >
-              <option value="">Select Client</option>
+              <option>Select Client</option>
               {client.map((client) => (
-                <option key={client._id} value={client.name}>
+                <option key={client._id} value={client._id}>
                   {client.name}
                 </option>
               ))}
@@ -76,27 +124,17 @@ function addPayment() {
               id="apartement"
               className="w-full px-4 py-2 text-gray-700 bg-gray-200 rounded"
               type="text"
+              value={payment.apartement}
+              onChange={handleApartmentChange}
               placeholder="apartement"
             >
-              <option value="">Select Apartement</option>
+              <option>Select Apartement</option>
               {apartement.map((app) => (
-                <option key={app._id} value={app.name}>
+                <option key={app._id} value={app._id}>
                   {app.name}
                 </option>
               ))}
             </select>
-          </div>
-          <div className=" mt-2">
-            <label className="block text-md font-semibold text-gray-800 mb-2">
-              Date
-            </label>
-            <input
-              name="date"
-              id="date"
-              className="w-full px-4 py-2 text-gray-700 bg-gray-200 rounded"
-              type="date"
-              placeholder="adress"
-            />
           </div>
           <div className="mt-6"></div>
           <button className="w-full px-6 py-2 text-white font-semibold tracking-wider bg-gray-900 rounded">

@@ -31,16 +31,19 @@ export const deletPayment = async (paymentId) => {
     throw error;
   }
 };
+
 export const createPayment = async (paymentData) => {
   try {
-    const response = await paymentApi.delete("/payment", paymentData);
-    if (response.status === 200) {
+    const response = await paymentApi.post("/payment", paymentData);
+    if (response.status === 201) {
       return response.data;
     } else {
-      throw new Error("Failed to delete");
+      throw new Error(
+        `Failed to create. Server responded with status ${response.status}.`
+      );
     }
   } catch (error) {
-    console.error("Error deleting Payment:", error);
+    console.error("Error creating Payment:", error);
     throw error;
   }
 };

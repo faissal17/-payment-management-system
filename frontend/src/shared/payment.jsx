@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getAllPayment, deletPayment } from "../Api/payment.api";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 function Payment() {
   const [payments, setPayment] = useState([]);
 
@@ -14,6 +15,7 @@ function Payment() {
         console.error("Error fetching data:", error);
       });
   }, []);
+  
   const handleDeletePayment = async (paymentId) => {
     try {
       const response = await deletPayment(paymentId);
@@ -35,9 +37,15 @@ function Payment() {
       );
     }
   };
+
   return (
     <React.Fragment>
-      <table className="divide-gray-200 w-full mt-28">
+      <Link to="/addPayment">
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-12 mb-3">
+          Add Payment
+        </button>
+      </Link>
+      <table className="divide-gray-200 w-full">
         <thead className="bg-gray-200">
           <tr>
             <th
@@ -79,21 +87,21 @@ function Payment() {
                 <div className="flex items-center">
                   <div className="ml-4">
                     <div className="text-sm font-medium text-gray-900">
-                      {pay.amount}
+                      {pay?.amount}
                     </div>
                   </div>
                 </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-900">{pay.date}</div>
+                <div className="text-sm text-gray-900">{pay?.date}</div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full">
-                  {pay.user}
+                  {pay.user?.name}
                 </span>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-900">{pay.apartment}</div>
+                <div className="text-sm text-gray-900">{pay?.apartment.name}</div>
               </td>
 
               <td className="px-6 py-4 whitespace-nowrap  text-sm font-medium">
