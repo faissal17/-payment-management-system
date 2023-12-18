@@ -14,6 +14,7 @@ const updateApartement = async (req, res) => {
       room, 
       floor,
     };
+    
 
     const findApartment = await Apartment.findByIdAndUpdate(id, updateFields, {
       new: true,

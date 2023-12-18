@@ -33,7 +33,7 @@ export const deleteAllApartement = async (apartmentId) => {
 export const createApartement = async (apartmentData) => {
   try {
     const response = await apartementAPi.post("/apartement", apartmentData);
-    
+
     if (response.status === 201) {
       return response.data;
     } else {
@@ -45,3 +45,20 @@ export const createApartement = async (apartmentData) => {
   }
 };
 
+export const editApartement = async (apartmentId, apartmentData) => {
+  try {
+    const response = await apartementAPi.put(
+      `/apartement/${apartmentId}`,
+      apartmentData
+    );
+
+    if (response.status !== 200) {
+      throw new Error(`Failed to update apartment. Status: ${response.status}`);
+    } 
+    return response.data;
+    
+  } catch (error) {
+    console.error("Error updating apartment:", error);
+    throw error;
+  }
+};

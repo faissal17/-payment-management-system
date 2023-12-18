@@ -11,6 +11,7 @@ import resetPassword from "./auth/resetPassword";
 import AppartementDashboard from "./component/AppartementDashboard";
 import PaymentDashboard from "./component/PaymentDashboard";
 import addApartement from "./component/apartementCrud/addApartement";
+import UpdateApartement from "./component/apartementCrud/editApartement";
 function App() {
   return (
     <React.Fragment>
@@ -27,6 +28,7 @@ function App() {
           {/*Route of Apartement Crud*/}
 
           <Route path="/addApartement" Component={addApartement} />
+          <Route path="/editApartement/:id" Component={UpdateApartement} />
         </Routes>
       </BrowserRouter>
     </React.Fragment>

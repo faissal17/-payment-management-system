@@ -1,39 +1,40 @@
 import React, { useState } from "react";
-import { createApartement } from "../../Api/apartement.api";
+import { editApartement } from "../../Api/apartement.api";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-function addApartement() {
-  const navigate = useNavigate();
+function UpdateApartement() {
+  const {id} = useParams();
   const [apartment, setApartment] = useState({
     name: "",
     description: "",
-    image: null,
     room: "",
     floor: "",
     city: "",
     adress: "",
   });
-
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setApartment((prevApartment) => ({ ...prevApartment, [name]: value }));
+    setApartment((prevApartment) => ({
+      ...prevApartment,
+      [name]: value,
+    }));
   };
-
   const handleSubmit = async (e) => {
+    console.log("first")
     e.preventDefault();
     try {
-      const response = await createApartement(apartment);
+      const response = await editApartement(id,apartment);
       console.log(response);
 
-      Swal.fire("Success!", "Apartment has been created.", "success").then(
+      Swal.fire("Success!", "Apartment has been updated.", "success").then(
         () => {
           navigate("/Appartement");
         }
       );
     } catch (error) {
-      console.error("Error creating Apartment:", error);
-      Swal.fire("Error", "Failed to create the Apartment.", "error");
+      console.error("Error updating Apartment:", error);
+      Swal.fire("Error", "Failed to update the Apartment.", "error");
     }
   };
   return (
@@ -43,7 +44,7 @@ function addApartement() {
           className="max-w-xl m-4 p-10 bg-white rounded shadow-2xl"
           onSubmit={handleSubmit}
         >
-          <p className="text-gray-800 font-bold text-2xl">Add Apartement</p>
+          <p className="text-gray-800 font-bold text-2xl">update Apartement</p>
           <div className="mt-2 flex">
             <div className="w-full pr-2">
               <label className="block text-md font-semibold text-gray-800 mb-2">
@@ -67,10 +68,10 @@ function addApartement() {
             <textarea
               name="description"
               id="description"
-              value={apartment.description}
-              onChange={handleChange}
               className="w-full px-4 py-2 text-gray-700 bg-gray-200 rounded"
               type="text"
+              value={apartment.description}
+              onChange={handleChange}
               placeholder="description"
             />
           </div>
@@ -82,15 +83,12 @@ function addApartement() {
               <input
                 name="image"
                 id="image"
-                value={apartment.image}
-                onChange={handleChange}
                 className="w-full px-4 py-2 text-gray-700 bg-gray-200 rounded"
                 type="file"
                 placeholder="image"
               />
             </div>
           </div> */}
-
           <div className="flex mt-2">
             <div className="w-1/2 pr-2">
               <label className="block text-md font-semibold text-gray-800 mb-2">
@@ -99,10 +97,10 @@ function addApartement() {
               <input
                 name="room"
                 id="room"
-                value={apartment.room}
-                onChange={handleChange}
                 className="w-full px-4 py-2 text-gray-700 bg-gray-200 rounded"
                 type="number"
+                value={apartment.room}
+                onChange={handleChange}
                 placeholder="room"
               />
             </div>
@@ -113,10 +111,10 @@ function addApartement() {
               <input
                 name="floor"
                 id="floor"
-                value={apartment.floor}
-                onChange={handleChange}
                 className="w-full px-4 py-2 text-gray-700 bg-gray-200 rounded"
                 type="number"
+                value={apartment.floor}
+                onChange={handleChange}
                 placeholder="Floor"
               />
             </div>
@@ -128,10 +126,10 @@ function addApartement() {
             <input
               name="city"
               id="city"
-              value={apartment.city}
-              onChange={handleChange}
               className="w-full px-4 py-2 text-gray-700 bg-gray-200 rounded"
               type="text"
+              value={apartment.city}
+              onChange={handleChange}
               placeholder="city"
             />
           </div>
@@ -142,20 +140,20 @@ function addApartement() {
             <input
               name="adress"
               id="adress"
-              value={apartment.adress}
-              onChange={handleChange}
               className="w-full px-4 py-2 text-gray-700 bg-gray-200 rounded"
               type="text"
+              value={apartment.adress}
+              onChange={handleChange}
               placeholder="adress"
             />
           </div>
           <div className="mt-6"></div>
           <button className="w-full px-6 py-2 text-white font-semibold tracking-wider bg-gray-900 rounded">
-            Create
+            Checkout
           </button>
         </form>
       </div>
     </React.Fragment>
   );
 }
-export default addApartement;
+export default UpdateApartement;
