@@ -31,3 +31,16 @@ export const deletPayment = async (paymentId) => {
     throw error;
   }
 };
+export const createPayment = async (paymentData) => {
+  try {
+    const response = await paymentApi.delete("/payment", paymentData);
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      throw new Error("Failed to delete");
+    }
+  } catch (error) {
+    console.error("Error deleting Payment:", error);
+    throw error;
+  }
+};

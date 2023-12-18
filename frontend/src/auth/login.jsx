@@ -20,7 +20,7 @@ function login() {
           text: "Login successful",
           icon: "success",
         }).then(() => {
-          navigate("/dashboard");
+          navigate("/Appartement");
         });
       } catch (error) {
         Swal.fire({
