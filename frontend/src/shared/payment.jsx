@@ -107,9 +107,12 @@ function Payment() {
               </td>
 
               <td className="px-6 py-4 whitespace-nowrap  text-sm font-medium">
-                <a href="#" className="text-indigo-600 hover:text-indigo-900">
+                <Link
+                  to={`/editPayment/${pay._id}`}
+                  className="text-indigo-600 hover:text-indigo-900"
+                >
                   Edit
-                </a>
+                </Link>
                 <button
                   onClick={() => handleDeletePayment(pay._id)}
                   className="ml-2 text-red-600 hover:text-red-900"

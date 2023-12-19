@@ -47,3 +47,20 @@ export const createPayment = async (paymentData) => {
     throw error;
   }
 };
+export const updatePayment = async (paymentId, paymentData) => {
+  try {
+    const response = await paymentApi.put(
+      `/payment/${paymentId}`,
+      paymentData
+    );
+
+    if (response.status !== 200) {
+      throw new Error(`Failed to update apartment. Status: ${response.status}`);
+    } 
+    return response.data;
+    
+  } catch (error) {
+    console.error("Error updating apartment:", error);
+    throw error;
+  }
+};
