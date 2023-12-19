@@ -42,7 +42,7 @@ function Payment() {
     pdf.text("Payment Factor", 20, 20);
     pdf.text(`Amount: ${payment.amount}`, 20, 30);
     pdf.text(`Date: ${payment.date}`, 20, 40);
-    pdf.text(`User: ${payment.user?.name}`, 20, 50);
+    pdf.text(`Client: ${payment.user?.name}`, 20, 50);
     pdf.text(`Apartment: ${payment.apartment?.name}`, 20, 60);
     pdf.save(`Payment_Factor_${payment._id}.pdf`);
   };

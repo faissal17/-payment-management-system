@@ -14,11 +14,13 @@ import addApartement from "./component/apartementCrud/addApartement";
 import UpdateApartement from "./component/apartementCrud/editApartement";
 import addPayment from "./component/paymentCrud/addPayment";
 import editPayment from "./component/paymentCrud/editPayment";
+import ClientDashboard from "./component/pages/ClientDashboard";
 function App() {
   return (
     <React.Fragment>
       <BrowserRouter>
         <Routes>
+
           <Route path="/login" Component={login} />
           <Route path="/register" Component={register} />
           <Route path="/ActiveEmail" Component={activatEmail} />
@@ -26,6 +28,8 @@ function App() {
           <Route path="/resetPassword" Component={resetPassword} />
           <Route path="/Appartement" Component={AppartementDashboard} />
           <Route path="/Payment" Component={PaymentDashboard} />
+          <Route path="/Client" Component={ClientDashboard} />
+
 
           {/*Route of Apartement Crud*/}
 
@@ -35,8 +39,6 @@ function App() {
           {/*Route of Payment Crud*/}
           <Route path="/addPayment" Component={addPayment} />
           <Route path="/editPayment/:id" Component={editPayment} />
-
-
         </Routes>
       </BrowserRouter>
     </React.Fragment>
