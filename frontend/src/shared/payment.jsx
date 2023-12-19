@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { getAllPayment, deletPayment } from "../Api/payment.api";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import jsPDF from "jspdf";
 function Payment() {
   const [payments, setPayment] = useState([]);
-
   useEffect(() => {
     getAllPayment()
       .then((response) => {
@@ -36,6 +36,15 @@ function Payment() {
         "error"
       );
     }
+  };
+  const generatePDF = (payment) => {
+    const pdf = new jsPDF();
+    pdf.text("Payment Factor", 20, 20);
+    pdf.text(`Amount: ${payment.amount}`, 20, 30);
+    pdf.text(`Date: ${payment.date}`, 20, 40);
+    pdf.text(`User: ${payment.user?.name}`, 20, 50);
+    pdf.text(`Apartment: ${payment.apartment?.name}`, 20, 60);
+    pdf.save(`Payment_Factor_${payment._id}.pdf`);
   };
 
   return (
@@ -113,11 +122,18 @@ function Payment() {
                 >
                   Edit
                 </Link>
+
                 <button
                   onClick={() => handleDeletePayment(pay._id)}
                   className="ml-2 text-red-600 hover:text-red-900"
                 >
                   Delete
+                </button>
+                <button
+                  className="ml-2 text-green-600 hover:text-green-900"
+                  onClick={() => generatePDF(pay)}
+                >
+                  Generate
                 </button>
               </td>
             </tr>
