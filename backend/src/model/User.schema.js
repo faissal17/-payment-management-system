@@ -27,6 +27,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: false,
   },
+  isReserving: {
+    type: String,
+    default: false,
+  },
 });
 const User = mongoose.model("User", userSchema);
 module.exports = User;
