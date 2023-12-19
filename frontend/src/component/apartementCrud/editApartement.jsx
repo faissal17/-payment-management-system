@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { editApartement } from "../../Api/apartement.api";
 import Swal from "sweetalert2";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function UpdateApartement() {
-  const {id} = useParams();
+  const navigate = useNavigate();
+  const { id } = useParams();
   const [apartment, setApartment] = useState({
     name: "",
     description: "",
@@ -21,10 +22,10 @@ function UpdateApartement() {
     }));
   };
   const handleSubmit = async (e) => {
-    console.log("first")
+    console.log("first");
     e.preventDefault();
     try {
-      const response = await editApartement(id,apartment);
+      const response = await editApartement(id, apartment);
       console.log(response);
 
       Swal.fire("Success!", "Apartment has been updated.", "success").then(

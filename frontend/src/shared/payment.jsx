@@ -15,7 +15,7 @@ function Payment() {
         console.error("Error fetching data:", error);
       });
   }, []);
-  
+
   const handleDeletePayment = async (paymentId) => {
     try {
       const response = await deletPayment(paymentId);
@@ -101,7 +101,9 @@ function Payment() {
                 </span>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-900">{pay?.apartment.name}</div>
+                <div className="text-sm text-gray-900">
+                  {pay?.apartment?.name}
+                </div>
               </td>
 
               <td className="px-6 py-4 whitespace-nowrap  text-sm font-medium">

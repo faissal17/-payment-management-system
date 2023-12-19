@@ -1,6 +1,6 @@
 import React from "react";
-import Navbar from "../shared/Navbar";
-import Payment from "../shared/payment";
+import Navbar from "../../shared/Navbar";
+import Payment from "../../shared/payment";
 function PaymentDashboard() {
   return (
     <React.Fragment>

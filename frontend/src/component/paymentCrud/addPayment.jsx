@@ -6,12 +6,12 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 function addPayment() {
   const navigate = useNavigate();
-  const [apartement, setApartement] = useState([]);
+  const [apartment, setApartement] = useState([]);
   const [client, setClient] = useState([]);
   const [payment, setPayment] = useState({
     amount: "",
     user: "",
-    apartement: "",
+    apartment: "",
   });
 
   const handleChange = (e) => {
@@ -32,7 +32,7 @@ function addPayment() {
   const handleApartmentChange = (selectedApartment) => {
     setPayment((prevPayment) => ({
       ...prevPayment,
-      apartement: selectedApartment.target.value,
+      apartment: selectedApartment.target.value,
     }));
   };
   const handleSubmit = async (e) => {
@@ -120,20 +120,26 @@ function addPayment() {
               Apartement
             </label>
             <select
-              name="apartement"
-              id="apartement"
+              name="apartment"
+              id="apartment"
               className="w-full px-4 py-2 text-gray-700 bg-gray-200 rounded"
               type="text"
-              value={payment.apartement}
+              value={payment.apartment}
               onChange={handleApartmentChange}
-              placeholder="apartement"
+              placeholder="apartment"
             >
               <option>Select Apartement</option>
-              {apartement.map((app) => (
-                <option key={app._id} value={app._id}>
-                  {app.name}
-                </option>
-              ))}
+              {apartment.map((app) => {
+                if (app.reserved == false) {
+                  return (
+                    <option key={app._id} value={app._id}>
+                      {app.name}
+                    </option>
+                  );
+                } else {
+                  return null;
+                }
+              })}
             </select>
           </div>
           <div className="mt-6"></div>

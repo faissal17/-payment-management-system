@@ -7,12 +7,17 @@ const addPayment = async (req, res) => {
   try {
     const userId = await User.findById(user);
     const apartmentId = await Apartement.findById(apartment);
+    // return console.log(apartmentId);
     const payment = await Payment.create({
       amount,
       user: userId,
       apartment: apartmentId,
     });
-
+    await Apartement.findByIdAndUpdate(
+      apartmentId,
+      { $set: { reserved: true } },
+      { new: true }
+    );
     res.status(201).json({ message: "Payment created", payment });
   } catch (error) {
     console.error(error);
