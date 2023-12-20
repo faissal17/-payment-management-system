@@ -108,11 +108,15 @@ function addPayment() {
               placeholder="Client"
             >
               <option>Select Client</option>
-              {client.map((client) => (
-                <option key={client._id} value={client._id}>
-                  {client.name}
-                </option>
-              ))}
+              {client.map((client) => {
+                if (client.isReserving == false) {
+                  <option key={client._id} value={client._id}>
+                    {client.name}
+                  </option>;
+                } else {
+                  return null;
+                }
+              })}
             </select>
           </div>
           <div className=" mt-2">

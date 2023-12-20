@@ -18,6 +18,11 @@ const addPayment = async (req, res) => {
       { $set: { reserved: true } },
       { new: true }
     );
+    await User.findByIdAndUpdate(
+      userId,
+      { $set: { isReserving: true } },
+      { new: true }
+    );
     res.status(201).json({ message: "Payment created", payment });
   } catch (error) {
     console.error(error);

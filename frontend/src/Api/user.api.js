@@ -17,3 +17,16 @@ export const getAllUser = async () => {
     throw error;
   }
 };
+export const deleteUser = async (userId) => {
+  try {
+    const response = await userApi.delete(`/user/${userId}`);
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      throw new Error("failed to Delete");
+    }
+  } catch (error) {
+    console.error("Error Deleting in:", error);
+    throw error;
+  }
+};
