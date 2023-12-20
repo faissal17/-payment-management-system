@@ -98,7 +98,10 @@ function Client() {
                   </span>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap  text-sm font-medium">
-                  <Link className="text-indigo-600 hover:text-indigo-900">
+                  <Link
+                    to={`/editUser/${client._id}`}
+                    className="text-indigo-600 hover:text-indigo-900"
+                  >
                     Edit
                   </Link>
                   <button

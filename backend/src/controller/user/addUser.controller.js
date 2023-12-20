@@ -2,17 +2,16 @@ const User = require("../../model/User.schema");
 const hashPassword = require("../../helper/hashPassword");
 
 const addUser = async (req, res) => {
-  const { name, email, password, PhoneNumber } = req.body;
+  const { name, email, password } = req.body;
   if (!name || !email || !password) {
-    res.status(400).json({ message: "all field are required" });
+    return res.status(400).json({ message: "all field are required" });
   }
-
   try {
     const checkUser = await User.findOne({ email });
     if (checkUser) {
-      res
+      return res
         .status(400)
-        .json({ message: "You cant't add a user with existing email" });
+        .json({ message: "You can't add a user with an existing email" });
     }
     const hashedPassword = await hashPassword(password);
     const user = await User.create({
@@ -20,10 +19,11 @@ const addUser = async (req, res) => {
       email,
       password: hashedPassword,
     });
-    res.status(201).json({ message: "User created", user });
+    return res.status(201).json({ message: "User created", user });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Internal server error" });
+    return res.status(500).json({ message: "Internal server error" });
   }
 };
+
 module.exports = addUser;

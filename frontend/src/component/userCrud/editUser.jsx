@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { createUser } from "../../Api/user.api";
+import { editUser } from "../../Api/user.api";
+import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
-
-function addUser() {
+function updateUser() {
   const navigate = useNavigate();
+  const { id } = useParams();
   const [clients, setClients] = useState({
     name: "",
     email: "",
@@ -17,18 +17,17 @@ function addUser() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await createUser(clients);
+      const response = await editUser(id, clients);
       console.log(response);
 
-      Swal.fire("Success!", "User has been created.", "success").then(() => {
+      Swal.fire("Success!", "User has been updated.", "success").then(() => {
         navigate("/Client");
       });
     } catch (error) {
-      console.error("Error creating User:", error);
+      console.error("Error udpating User:", error);
       Swal.fire("Error", "Failed to create the User.", "error");
     }
   };
-
   return (
     <React.Fragment>
       <div className="flex justify-center items-center mt-2">
@@ -36,7 +35,7 @@ function addUser() {
           className="max-w-xl m-4 p-10 bg-white rounded shadow-2xl"
           onSubmit={handleSubmit}
         >
-          <p className="text-gray-800 font-bold text-2xl">Add Client</p>
+          <p className="text-gray-800 font-bold text-2xl">update Client</p>
           <div className="mt-2 flex w-96">
             <div className="w-full pr-2">
               <label className="block text-md font-semibold text-gray-800 mb-2">
@@ -74,10 +73,10 @@ function addUser() {
             <input
               name="password"
               id="password"
-              value={clients.password}
-              onChange={handleChange}
               className="w-full px-4 py-2 text-gray-700 bg-gray-200 rounded"
               type="password"
+              value={clients.password}
+              onChange={handleChange}
               placeholder="User Password"
             />
           </div>
@@ -90,4 +89,4 @@ function addUser() {
     </React.Fragment>
   );
 }
-export default addUser;
+export default updateUser;
