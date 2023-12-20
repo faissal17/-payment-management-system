@@ -15,11 +15,14 @@ import UpdateApartement from "./component/apartementCrud/editApartement";
 import addPayment from "./component/paymentCrud/addPayment";
 import editPayment from "./component/paymentCrud/editPayment";
 import ClientDashboard from "./component/pages/ClientDashboard";
+import NotFound from "./component/pages/NotFound";
 function App() {
   return (
     <React.Fragment>
       <BrowserRouter>
         <Routes>
+        <Route path="*" Component={NotFound} />
+
 
           <Route path="/login" Component={login} />
           <Route path="/register" Component={register} />

@@ -19,7 +19,13 @@ function addApartement() {
     const { name, value } = e.target;
     setApartment((prevApartment) => ({ ...prevApartment, [name]: value }));
   };
-
+  const handleImageChange = (event) => {
+    const selectedFile = event.target.files[0];
+    setApartment((prevApartment) => ({
+      ...prevApartment,
+      image: selectedFile.name,
+    }));
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -74,7 +80,7 @@ function addApartement() {
               placeholder="description"
             />
           </div>
-          {/* <div className="flex mt-2">
+          <div className="flex mt-2">
             <div className="w-full pr-2">
               <label className="block text-md font-semibold text-gray-800 mb-2">
                 image
@@ -82,14 +88,13 @@ function addApartement() {
               <input
                 name="image"
                 id="image"
-                value={apartment.image}
-                onChange={handleChange}
+                onChange={handleImageChange}
                 className="w-full px-4 py-2 text-gray-700 bg-gray-200 rounded"
                 type="file"
                 placeholder="image"
               />
             </div>
-          </div> */}
+          </div>
 
           <div className="flex mt-2">
             <div className="w-1/2 pr-2">
