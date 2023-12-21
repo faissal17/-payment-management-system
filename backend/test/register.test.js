@@ -57,7 +57,6 @@ it("should return status 400 if password is empty", async () => {
 });
 
 it("should return 400 if email already exists", async () => {
-  // Mock the User.findOne method to simulate an existing email
   User.findOne.mockReturnValue(Promise.resolve({ email: "inar@gmail.com" }));
 
   const req = {
