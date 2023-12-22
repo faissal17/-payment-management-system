@@ -2,8 +2,8 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 const api = axios.create({
-  baseURL: "http://localhost:5000/auth",
-  timeout: 5000,
+  baseURL: "http://localhost:8000/auth",
+  timeout: 8000,
 });
 
 export const Login = async (email, password) => {

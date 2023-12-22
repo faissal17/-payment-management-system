@@ -4,6 +4,8 @@ import { getAllUser } from "../../Api/user.api";
 import { createPayment } from "../../Api/payment.api";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../../shared/Navbar";
+
 function addPayment() {
   const navigate = useNavigate();
   const [apartment, setApartement] = useState([]);
@@ -72,7 +74,8 @@ function addPayment() {
 
   return (
     <React.Fragment>
-      <div className="flex justify-center items-center mt-2">
+      <Navbar/>
+      <div className="flex justify-center items-center h-screen">
         <form
           className="w-6/12 m-4 p-10 bg-white rounded shadow-2xl"
           onSubmit={handleSubmit}

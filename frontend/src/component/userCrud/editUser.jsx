@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { editUser } from "../../Api/user.api";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import Navbar from "../../shared/Navbar";
+
 function updateUser() {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -30,7 +32,8 @@ function updateUser() {
   };
   return (
     <React.Fragment>
-      <div className="flex justify-center items-center mt-2">
+      <Navbar/>
+      <div className="flex justify-center items-center h-screen">
         <form
           className="max-w-xl m-4 p-10 bg-white rounded shadow-2xl"
           onSubmit={handleSubmit}

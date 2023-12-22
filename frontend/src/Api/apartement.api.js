@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const apartementAPi = axios.create({
-  baseURL: "http://localhost:5000",
-  timeout: 5000,
+  baseURL: "http://localhost:8000",
+  timeout: 8000,
 });
 export const getAllApartement = async () => {
   try {
