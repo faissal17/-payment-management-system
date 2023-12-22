@@ -8,7 +8,6 @@ before start with PayUnionPro you need some requirement
 
 - Node.js and npm installed on your machine.
 - Git installed on your machine.
--
 
 # Getting started
 
