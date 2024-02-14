@@ -1,17 +1,17 @@
 # PayUnionPro
 
-PayUnionPro is a comprehensive payment management system tailored for unions. This application facilitates seamless union dues collection, processing, and tracking, ensuring a secure and efficient payment experience for both union members and administrators. Simplify your union's financial operations with PayUnionPro.
+PayUnionPro is a comprehensive payment management system tailored for unions. This application facilitates seamless union dues collection, processing, and tracking, ensuring a secure and efficient payment experience for union members and administrators. Simplify your union's financial operations with PayUnionPro.
 
 # PreRequest
 
-before start with PayUnionPro you need some requirement
+before starting with PayUnionPro you need some requirement
 
 - Node.js and npm installed on your machine.
 - Git installed on your machine.
 
 # Getting started
 
-1. To get a local copy up and running, follow these simple steps.
+1. Follow these simple steps to get a local copy up and running.
 
 ```bash
 git clone https://github.com/faissal17/payment-management-system.git
@@ -33,22 +33,22 @@ npm install
 
 You may need to configure some environment variables.
 
-1.Extract the .env file from the .env.example file
+1. Extract the .env file from the .env.example file
 
 ```bash
 cp .env.example .env
 ```
 
-i already mentioned in env.example that you will need to add a secret key you can write whatever you want but in case youb wanted more seccure you can run the following command in oyur terminal
+I already mentioned in env. an example that you will need to add a secret key you can write whatever you want but in case you want more security you can run the following command in your terminal
 
 ```bash
 node -e "console.log(require('crypto').randomBytes(256).toString('base64'));"
 
 ```
 
-run the following command and get generated secret key
+run the following command and get the generated secret key
 
-you will also need some requirement in your .env file
+you will also need some requirements in your .env file
 
 
 # React + Vite
